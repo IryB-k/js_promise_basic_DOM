@@ -4,32 +4,30 @@ const logo = document.querySelector('.logo');
 
 const promise1 = new Promise((resolve) => {
   logo.addEventListener('click', () => {
-    resolve('Ira'); 
+    resolve();
   });
 });
 
-promise1.then(eventResult => {
-   const divEl = document.createElement('div');
-   const bodyEl = document.querySelector('body');
-   divEl.className = 'message';
-   divEl.textContent = 'Promise was resolved!';
-   bodyEl.append(divEl);
-  console.log(eventResult);
-});
-
-
-const promise2 = new Promise((_, reject) => {
-  setTimeout(() => {
-    reject();
-  }, 3000);
-});
-// 
-
-promise2.catch(error => {
+promise1.then((eventResult) => {
   const divEl = document.createElement('div');
   const bodyEl = document.querySelector('body');
-  divEl.classList.add('message', 'error-message');
-  divEl.textContent = 'Promise was rejected!';
+
+  divEl.className = 'message';
+  divEl.textContent = 'Promise was resolved!';
   bodyEl.append(divEl);
-  console.log(error);
+});
+
+const promise2 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    reject(new Error('Promise was rejected!'));
+  }, 3000);
+});
+
+promise2.catch((error) => {
+  const divEl = document.createElement('div');
+  const bodyEl = document.querySelector('body');
+
+  divEl.classList.add('message', 'error-message');
+  divEl.textContent = error;
+  bodyEl.append(divEl);
 });
