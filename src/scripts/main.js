@@ -28,6 +28,6 @@ promise2.catch((error) => {
   const bodyEl = document.querySelector('body');
 
   divEl.classList.add('message', 'error-message');
-  divEl.textContent = error;
+  divEl.textContent = error.message;
   bodyEl.append(divEl);
 });
